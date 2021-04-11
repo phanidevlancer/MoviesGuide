@@ -12,9 +12,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.app.movieguidemvvm.R
 import com.app.movieguidemvvm.databinding.FragmentMoviesCollectionBinding
+import com.app.movieguidemvvm.model.Search
 import com.app.movieguidemvvm.network.MoviesGuideApiInterface
 import com.app.movieguidemvvm.repository.MoviesCollectionRepository
 import com.app.movieguidemvvm.ui.adapter.MoviesCollectionRecyclerAdapater
+import com.app.movieguidemvvm.ui.listeners.OnMovieItemClick
 
 
 class MoviesCollectionFragment : Fragment() {
@@ -47,7 +49,20 @@ class MoviesCollectionFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        binding.moviesCollectionRcv.adapter = moviesCollectionRecyclerAdapater
+        binding.moviesCollectionRcv.apply {
+            adapter = moviesCollectionRecyclerAdapater
+            addOnItemTouchListener(
+                    OnMovieItemClick(
+                            context.applicationContext,
+                            object : OnMovieItemClick.onMovieSelected {
+                                override fun onMovieClick(view: View) {
+                                    val movieData : Search = view.tag as Search
+                                }
+                            }
+                    )
+            )
+        }
+
     }
 
 }

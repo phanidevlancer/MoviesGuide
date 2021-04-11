@@ -47,19 +47,14 @@ class MoviesCollectionRecyclerAdapater(private val activity: Activity) : Recycle
         val yearTv : TextView = view.findViewById(R.id.year)
 
         fun bind(movieData: Search,activity: Activity){
+            root.tag = movieData
             titleTv.text = movieData.Title
             yearTv.text = movieData.Year
-
             Glide
                 .with(activity)
                 .load(movieData.Poster)
                 .centerCrop()
                 .into(movieCover);
-
-            movieCover.setOnClickListener(View.OnClickListener {
-
-            })
-
         }
     }
 
