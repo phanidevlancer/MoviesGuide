@@ -1,14 +1,12 @@
 package com.app.movieguidemvvm.ui.listeners
 
 import android.content.Context
-import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.app.movieguidemvvm.model.Search
 
-open class OnMovieItemClick(context: Context, private val listener: onMovieSelected) :
+open class OnMovieItemClick(context: Context, private val listener: OnMovieSelected) :
         RecyclerView.OnItemTouchListener  {
 
     private var mGestureDetector =
@@ -18,7 +16,7 @@ open class OnMovieItemClick(context: Context, private val listener: onMovieSelec
                 }
             })
 
-    interface onMovieSelected {
+    interface OnMovieSelected {
         fun onMovieClick(view: View)
     }
 

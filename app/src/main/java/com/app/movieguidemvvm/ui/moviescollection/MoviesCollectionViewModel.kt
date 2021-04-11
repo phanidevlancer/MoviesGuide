@@ -8,7 +8,6 @@ import com.app.movieguidemvvm.model.MoviesCollectionResponse
 import com.app.movieguidemvvm.repository.MoviesCollectionRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MoviesCollectionViewModel(private val repository: MoviesCollectionRepository) : ViewModel() {
 

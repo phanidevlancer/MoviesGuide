@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">MovieGuideMVVM</string>
+    <string name="move_poster">move_poster</string>
+    <string name="textview">TextView</string>
+    <string name="friends">Friends</string>
+    <string name="movie_poster">movie_poster</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

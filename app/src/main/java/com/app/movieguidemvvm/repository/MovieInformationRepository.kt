@@ -1,7 +1,6 @@
 package com.app.movieguidemvvm.repository
 
 import com.app.movieguidemvvm.model.MovieInformationResponse
-import com.app.movieguidemvvm.model.MoviesCollectionResponse
 import com.app.movieguidemvvm.network.MoviesGuideApiInterface
 import com.app.movieguidemvvm.network.SafeApiRequest
 

@@ -19,7 +19,7 @@ interface MoviesGuideApiInterface {
     suspend fun getMoviesInformationData(@Query("i") movieID: String): Response<MovieInformationResponse>
 
     companion object {
-        val BASE_URL = "https://www.omdbapi.com/"
+        private const val BASE_URL = "https://www.omdbapi.com/"
         operator fun invoke(): MoviesGuideApiInterface {
             val okkHttpclient = OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))

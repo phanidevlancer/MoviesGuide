@@ -41,10 +41,10 @@ class MoviesCollectionRecyclerAdapater(private val activity: Activity) : Recycle
 
 
     class MovieItemViewHolder(view : View) : RecyclerView.ViewHolder(view) {
-        val root : ConstraintLayout = view.findViewById(R.id.root)
-        val titleTv : TextView = view.findViewById(R.id.movieTitle)
-        val movieCover : ImageView = view.findViewById(R.id.movieCover)
-        val yearTv : TextView = view.findViewById(R.id.year)
+        private val root : ConstraintLayout = view.findViewById(R.id.root)
+        private val titleTv : TextView = view.findViewById(R.id.movieTitle)
+        private val movieCover : ImageView = view.findViewById(R.id.movieCover)
+        private val yearTv : TextView = view.findViewById(R.id.year)
 
         fun bind(movieData: Search,activity: Activity){
             root.tag = movieData
@@ -54,7 +54,7 @@ class MoviesCollectionRecyclerAdapater(private val activity: Activity) : Recycle
                 .with(activity)
                 .load(movieData.Poster)
                 .centerCrop()
-                .into(movieCover);
+                .into(movieCover)
         }
     }
 

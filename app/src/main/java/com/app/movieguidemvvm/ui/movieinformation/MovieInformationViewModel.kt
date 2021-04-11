@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.movieguidemvvm.model.MovieInformationResponse
 import com.app.movieguidemvvm.repository.MovieInformationRepository
-import com.app.movieguidemvvm.repository.MoviesCollectionRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -26,6 +25,7 @@ class MovieInformationViewModel(private val repository: MovieInformationReposito
     fun getMoviesInformation(movieID: String) {
         viewModelScope.launch(Dispatchers.IO) {
             movieInformationResponse = repository.getMovieInformationData(movieID)
+            movieInformationData.postValue(movieInformationResponse)
         }
     }
 }
