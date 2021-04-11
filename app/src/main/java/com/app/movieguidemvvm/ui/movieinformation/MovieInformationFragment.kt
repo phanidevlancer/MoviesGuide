@@ -1,6 +1,8 @@
 package com.app.movieguidemvvm.ui.movieinformation
 
 import android.app.Activity
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +47,12 @@ class MovieInformationFragment : Fragment() {
     }
 
     private fun getMoviesInformation(movieID: String) {
-        viewModel.getMoviesInformation(movieID)
+        if(!hasNetworkAvailable()){
+            return
+        }
+        if(viewModel.movieInformation.value == null){
+            viewModel.getMoviesInformation(movieID)
+        }
         viewModel.movieInformation.observe(viewLifecycleOwner, {
             updateUI(it)
         })
@@ -65,6 +72,13 @@ class MovieInformationFragment : Fragment() {
                 .centerCrop()
                 .into(binding.movieCover)
         }
+    }
+
+    private fun hasNetworkAvailable(): Boolean {
+        val service = Context.CONNECTIVITY_SERVICE
+        val manager = context?.getSystemService(service) as ConnectivityManager?
+        val network = manager?.activeNetworkInfo
+        return (network?.isConnected) ?: false
     }
 
 }

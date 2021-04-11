@@ -1,6 +1,8 @@
 package com.app.movieguidemvvm.ui.moviescollection
 
 import android.app.Activity
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +45,12 @@ class MoviesCollectionFragment : Fragment() {
     }
 
     private fun getMoviesCollection() {
-        viewModel.getMoviesColloectionData("friends")
+        if(!hasNetworkAvailable()){
+            return
+        }
+        if(viewModel.moviesLiveData.value == null){
+            viewModel.getMoviesColloectionData("friends")
+        }
         viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer {
             moviesCollectionRecyclerAdapater.updateRecyclerData(it)
         })
@@ -72,6 +79,13 @@ class MoviesCollectionFragment : Fragment() {
         bundle.putString("MovieId",movieData.imdbID)
         findNavController().navigate(R.id.action_moviesCollectionFragment_to_movieInformation,bundle)
 
+    }
+
+    private fun hasNetworkAvailable(): Boolean {
+        val service = Context.CONNECTIVITY_SERVICE
+        val manager = context?.getSystemService(service) as ConnectivityManager?
+        val network = manager?.activeNetworkInfo
+        return (network?.isConnected) ?: false
     }
 
 }
