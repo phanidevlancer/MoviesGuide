@@ -20,6 +20,7 @@ import com.app.movieguidemvvm.network.MoviesGuideApiInterface
 import com.app.movieguidemvvm.repository.MoviesCollectionRepository
 import com.app.movieguidemvvm.ui.adapter.MoviesCollectionRecyclerAdapater
 import com.app.movieguidemvvm.ui.listeners.OnMovieItemClick
+import com.app.movieguidemvvm.utils.NetworkAvailablityUtils
 
 
 class MoviesCollectionFragment : Fragment() {
@@ -45,7 +46,7 @@ class MoviesCollectionFragment : Fragment() {
     }
 
     private fun getMoviesCollection() {
-        if(!hasNetworkAvailable()){
+        if(!NetworkAvailablityUtils.hasNetworkAvailable(context)){
             return
         }
         if(viewModel.moviesLiveData.value == null){
@@ -81,11 +82,5 @@ class MoviesCollectionFragment : Fragment() {
 
     }
 
-    private fun hasNetworkAvailable(): Boolean {
-        val service = Context.CONNECTIVITY_SERVICE
-        val manager = context?.getSystemService(service) as ConnectivityManager?
-        val network = manager?.activeNetworkInfo
-        return (network?.isConnected) ?: false
-    }
 
 }

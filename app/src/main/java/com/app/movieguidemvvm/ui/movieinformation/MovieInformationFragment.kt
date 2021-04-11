@@ -1,8 +1,6 @@
 package com.app.movieguidemvvm.ui.movieinformation
 
 import android.app.Activity
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +13,7 @@ import com.app.movieguidemvvm.databinding.FragmentMovieInformationBinding
 import com.app.movieguidemvvm.model.MovieInformationResponse
 import com.app.movieguidemvvm.network.MoviesGuideApiInterface
 import com.app.movieguidemvvm.repository.MovieInformationRepository
+import com.app.movieguidemvvm.utils.NetworkAvailablityUtils
 import com.bumptech.glide.Glide
 
 
@@ -47,7 +46,7 @@ class MovieInformationFragment : Fragment() {
     }
 
     private fun getMoviesInformation(movieID: String) {
-        if(!hasNetworkAvailable()){
+        if(!NetworkAvailablityUtils.hasNetworkAvailable(context)){
             return
         }
         if(viewModel.movieInformation.value == null){
@@ -74,11 +73,6 @@ class MovieInformationFragment : Fragment() {
         }
     }
 
-    private fun hasNetworkAvailable(): Boolean {
-        val service = Context.CONNECTIVITY_SERVICE
-        val manager = context?.getSystemService(service) as ConnectivityManager?
-        val network = manager?.activeNetworkInfo
-        return (network?.isConnected) ?: false
-    }
+
 
 }
